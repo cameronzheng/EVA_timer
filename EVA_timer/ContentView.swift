@@ -51,11 +51,11 @@ struct ContentView: View {
             } else {
                 background.setColorToYLW(isStop, isSlow, isNormal, isRacing)
             }
-            
             background.setBackground()
             
+            
+            
             GeometryReader { geometry in
-                
                 // STOP BUTTON
                 Button {
                     isStop = true
@@ -585,7 +585,7 @@ class displayManager : ObservableObject {
 
 struct BackgroundSet {
     // _ removes external parameter names
-    func setColorToYLW(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool) -> some View {
+    func setColorToYLW(_ Stop: Bool, _ Slow: Bool, _ Normal: Bool, _ Racing: Bool) -> some View {
         ZStack {
             Image("YLW_EVA_TIMER-BACKGROUND")
                 .resizable()
@@ -595,19 +595,19 @@ struct BackgroundSet {
                 .resizable()
                 .scaledToFill()
             
-            Image(isStop ? "YLW_EVA_TIMER-STOP_ON" : "YLW_EVA_TIMER-STOP_OFF")
+            Image(Stop ? "YLW_EVA_TIMER-STOP_ON" : "YLW_EVA_TIMER-STOP_OFF")
                 .resizable()
             
-            Image(isSlow ? "YLW_EVA_TIMER-SLOW_ON" : "YLW_EVA_TIMER-SLOW_OFF")
+            Image(Slow ? "YLW_EVA_TIMER-SLOW_ON" : "YLW_EVA_TIMER-SLOW_OFF")
                 .resizable()
             
-            Image(isNormal ? "YLW_EVA_TIMER-NORMAL_ON" : "YLW_EVA_TIMER-NORMAL_OFF")
+            Image(Normal ? "YLW_EVA_TIMER-NORMAL_ON" : "YLW_EVA_TIMER-NORMAL_OFF")
                 .resizable()
             
-            Image(isRacing ? "YLW_EVA_TIMER-RACING_ON" : "YLW_EVA_TIMER-RACING_OFF")
+            Image(Racing ? "YLW_EVA_TIMER-RACING_ON" : "YLW_EVA_TIMER-RACING_OFF")
                 .resizable()
             
-            Image(isStop ? "EVA_TIMER-INTERNAL_OFF" : "YLW_EVA_TIMER-INTERNAL_ON")
+            Image(Stop ? "EVA_TIMER-INTERNAL_OFF" : "YLW_EVA_TIMER-INTERNAL_ON")
                 .resizable()
             
             Image("YLW_EVA_TIMER-MESS_ON")
@@ -615,7 +615,7 @@ struct BackgroundSet {
         }
     }
     
-    func setColorToRED(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool) -> some View {
+    func setColorToRED(_ Stop: Bool, _ Slow: Bool, _ Normal: Bool, _ Racing: Bool) -> some View {
         ZStack {
             Image("RED_EVA_TIMER-BACKGROUND")
                 .resizable()
@@ -625,19 +625,19 @@ struct BackgroundSet {
                 .resizable()
                 .scaledToFill()
             
-            Image(isStop ? "RED_EVA_TIMER-STOP_ON" : "RED_EVA_TIMER-STOP_OFF")
+            Image(Stop ? "RED_EVA_TIMER-STOP_ON" : "RED_EVA_TIMER-STOP_OFF")
                 .resizable()
             
-            Image(isSlow ? "RED_EVA_TIMER-SLOW_ON" : "RED_EVA_TIMER-SLOW_OFF")
+            Image(Slow ? "RED_EVA_TIMER-SLOW_ON" : "RED_EVA_TIMER-SLOW_OFF")
                 .resizable()
             
-            Image(isNormal ? "RED_EVA_TIMER-NORMAL_ON" : "RED_EVA_TIMER-NORMAL_OFF")
+            Image(Normal ? "RED_EVA_TIMER-NORMAL_ON" : "RED_EVA_TIMER-NORMAL_OFF")
                 .resizable()
             
-            Image(isRacing ? "RED_EVA_TIMER-RACING_ON" : "RED_EVA_TIMER-RACING_OFF")
+            Image(Racing ? "RED_EVA_TIMER-RACING_ON" : "RED_EVA_TIMER-RACING_OFF")
                 .resizable()
             
-            Image(isStop ? "RED_TIMER-INTERNAL_OFF" : "RED_EVA_TIMER-INTERNAL_ON")
+            Image(Stop ? "RED_TIMER-INTERNAL_OFF" : "RED_EVA_TIMER-INTERNAL_ON")
                 .resizable()
             
             Image("RED_EVA_TIMER-MESS_ON")
@@ -645,7 +645,7 @@ struct BackgroundSet {
         }
     }
     
-    func setColorToORG(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool) -> some View {
+    func setColorToORG(_ Stop: Bool, _ Slow: Bool, _ Normal: Bool, _ Racing: Bool) -> some View {
         ZStack {
             Image("ORG_EVA_TIMER-BACKGROUND")
                 .resizable()
@@ -655,19 +655,19 @@ struct BackgroundSet {
                 .resizable()
                 .scaledToFill()
 
-            Image(isStop ? "ORG_EVA_TIMER-STOP_ON" : "ORG_EVA_TIMER-STOP_OFF")
+            Image(Stop ? "ORG_EVA_TIMER-STOP_ON" : "ORG_EVA_TIMER-STOP_OFF")
                 .resizable()
             
-            Image(isSlow ? "ORG_EVA_TIMER-SLOW_ON" : "ORG_EVA_TIMER-SLOW_OFF")
+            Image(Slow ? "ORG_EVA_TIMER-SLOW_ON" : "ORG_EVA_TIMER-SLOW_OFF")
                 .resizable()
 
-            Image(isNormal ? "ORG_EVA_TIMER-NORMAL_ON" : "ORG_EVA_TIMER-NORMAL_OFF")
+            Image(Normal ? "ORG_EVA_TIMER-NORMAL_ON" : "ORG_EVA_TIMER-NORMAL_OFF")
                 .resizable()
             
-            Image(isRacing ? "ORG_EVA_TIMER-RACING_ON" : "ORG_EVA_TIMER-RACING_OFF")
+            Image(Racing ? "ORG_EVA_TIMER-RACING_ON" : "ORG_EVA_TIMER-RACING_OFF")
                 .resizable()
 
-            Image(isStop ? "ORG_TIMER-INTERNAL_OFF" : "ORG_EVA_TIMER-INTERNAL_ON")
+            Image(Stop ? "ORG_TIMER-INTERNAL_OFF" : "ORG_EVA_TIMER-INTERNAL_ON")
                 .resizable()
             
             Image("ORG_EVA_TIMER-MESS_ON")
