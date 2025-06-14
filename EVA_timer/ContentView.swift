@@ -25,12 +25,6 @@ struct ContentView: View {
     
     var background = BackgroundSet()
     
-    
-    @State private var red = Color(red: 246, green: 77, blue: 84)
-    @State private var orange = Color(red: 238, green: 149, blue: 0)
-    @State private var yellow = Color(red: 255, green: 205, blue: 0)
-    
-    
     // time variables
     @State private var hourVal = 0.0
     @State private var minuteVal = 0.0
@@ -240,8 +234,6 @@ struct ContentView: View {
                             y: geometry.size.height * 0.457 // Keeps the button at % of the window height
                         )
                 }
-                
-                
                 
                 // seconds val
                 
