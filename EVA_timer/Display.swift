@@ -8,92 +8,32 @@ import SwiftUI
 
 struct BackgroundSet {
     // _ removes external parameter names
-    func setColorToYLW(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool) -> some View {
+    func setColor(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool, _ color: String) -> some View {
         ZStack {
-            Image("YLW_EVA_TIMER-BACKGROUND")
+            Image(color + "_EVA_TIMER-BACKGROUND")
                 .resizable()
                 .scaledToFill()
             
-            Image("YLW_EVA_TIMER-MAIN_SCREEN")
+            Image(color + "_EVA_TIMER-MAIN_SCREEN")
                 .resizable()
                 .scaledToFill()
             
-            Image(isStop ? "YLW_EVA_TIMER-STOP_ON" : "YLW_EVA_TIMER-STOP_OFF")
+            Image(isStop ? color + "_EVA_TIMER-STOP_ON" : color + "_EVA_TIMER-STOP_OFF")
                 .resizable()
             
-            Image(isSlow ? "YLW_EVA_TIMER-SLOW_ON" : "YLW_EVA_TIMER-SLOW_OFF")
+            Image(isSlow ? color + "_EVA_TIMER-SLOW_ON" : color + "_EVA_TIMER-SLOW_OFF")
                 .resizable()
             
-            Image(isNormal ? "YLW_EVA_TIMER-NORMAL_ON" : "YLW_EVA_TIMER-NORMAL_OFF")
+            Image(isNormal ? color + "_EVA_TIMER-NORMAL_ON" : color + "_EVA_TIMER-NORMAL_OFF")
                 .resizable()
             
-            Image(isRacing ? "YLW_EVA_TIMER-RACING_ON" : "YLW_EVA_TIMER-RACING_OFF")
+            Image(isRacing ? color + "_EVA_TIMER-RACING_ON" : color + "_EVA_TIMER-RACING_OFF")
                 .resizable()
             
-            Image(isStop ? "EVA_TIMER-INTERNAL_OFF" : "YLW_EVA_TIMER-INTERNAL_ON")
+            Image(isStop ? color + "_EVA_TIMER-INTERNAL_OFF" : color + "_EVA_TIMER-INTERNAL_ON")
                 .resizable()
             
-            Image("YLW_EVA_TIMER-MESS_ON")
-                .resizable()
-        }
-    }
-    
-    func setColorToRED(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool) -> some View {
-        ZStack {
-            Image("RED_EVA_TIMER-BACKGROUND")
-                .resizable()
-                .scaledToFill()
-            
-            Image("RED_EVA_TIMER-MAIN_SCREEN")
-                .resizable()
-                .scaledToFill()
-            
-            Image(isStop ? "RED_EVA_TIMER-STOP_ON" : "RED_EVA_TIMER-STOP_OFF")
-                .resizable()
-            
-            Image(isSlow ? "RED_EVA_TIMER-SLOW_ON" : "RED_EVA_TIMER-SLOW_OFF")
-                .resizable()
-            
-            Image(isNormal ? "RED_EVA_TIMER-NORMAL_ON" : "RED_EVA_TIMER-NORMAL_OFF")
-                .resizable()
-            
-            Image(isRacing ? "RED_EVA_TIMER-RACING_ON" : "RED_EVA_TIMER-RACING_OFF")
-                .resizable()
-            
-            Image(isStop ? "RED_TIMER-INTERNAL_OFF" : "RED_EVA_TIMER-INTERNAL_ON")
-                .resizable()
-            
-            Image("RED_EVA_TIMER-MESS_ON")
-                .resizable()
-        }
-    }
-    
-    func setColorToORG(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool) -> some View {
-        ZStack {
-            Image("ORG_EVA_TIMER-BACKGROUND")
-                .resizable()
-                .scaledToFill()
-            
-            Image("ORG_EVA_TIMER-MAIN_SCREEN")
-                .resizable()
-                .scaledToFill()
-
-            Image(isStop ? "ORG_EVA_TIMER-STOP_ON" : "ORG_EVA_TIMER-STOP_OFF")
-                .resizable()
-            
-            Image(isSlow ? "ORG_EVA_TIMER-SLOW_ON" : "ORG_EVA_TIMER-SLOW_OFF")
-                .resizable()
-
-            Image(isNormal ? "ORG_EVA_TIMER-NORMAL_ON" : "ORG_EVA_TIMER-NORMAL_OFF")
-                .resizable()
-            
-            Image(isRacing ? "ORG_EVA_TIMER-RACING_ON" : "ORG_EVA_TIMER-RACING_OFF")
-                .resizable()
-
-            Image(isStop ? "ORG_TIMER-INTERNAL_OFF" : "ORG_EVA_TIMER-INTERNAL_ON")
-                .resizable()
-            
-            Image("ORG_EVA_TIMER-MESS_ON")
+            Image(color + "_EVA_TIMER-MESS_ON")
                 .resizable()
         }
     }
