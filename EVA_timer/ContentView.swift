@@ -23,6 +23,8 @@ struct ContentView: View {
     @State private var secColon = false
     @State private var milliSecColon = false
     
+    var background = BackgroundSet()
+    
     
     @State private var red = Color(red: 246, green: 77, blue: 84)
     @State private var orange = Color(red: 238, green: 149, blue: 0)
@@ -41,7 +43,19 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            
+            if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
+                background.setColorToORG(isStop: isStop, isSlow: isSlow, isNormal: isNormal, isRacing: isRacing)
+            } else if (countDown.remaining_time <= 15) && countDown.state == "running" {
+                background.setColorToRED(isStop: isStop, isSlow: isSlow, isNormal: isNormal, isRacing: isRacing)
+            } else {
+                background.setColorToYLW(isStop: isStop, isSlow: isSlow, isNormal: isNormal, isRacing: isRacing)
+            }
+            
+            background.setBackground()
+            
             GeometryReader { geometry in
+                
                 // STOP BUTTON
                 Button {
                     isStop = true
@@ -457,169 +471,6 @@ struct ContentView: View {
                 }
             }
         }
-        .background(
-            ZStack {
-                if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
-                    Image("ORG_EVA_TIMER-BACKGROUND")
-                        .resizable()
-                        .scaledToFill()
-                    
-                    Image("ORG_EVA_TIMER-MAIN_SCREEN")
-                        .resizable()
-                        .scaledToFill()
-
-                    Image(isStop ? "ORG_EVA_TIMER-STOP_ON" : "ORG_EVA_TIMER-STOP_OFF")
-                        .resizable()
-                    
-                    Image(isSlow ? "ORG_EVA_TIMER-SLOW_ON" : "ORG_EVA_TIMER-SLOW_OFF")
-                        .resizable()
-
-                    Image(isNormal ? "ORG_EVA_TIMER-NORMAL_ON" : "ORG_EVA_TIMER-NORMAL_OFF")
-                        .resizable()
-                    
-                    Image(isRacing ? "ORG_EVA_TIMER-RACING_ON" : "ORG_EVA_TIMER-RACING_OFF")
-                        .resizable()
-      
-                    Image(isStop ? "ORG_TIMER-INTERNAL_OFF" : "ORG_EVA_TIMER-INTERNAL_ON")
-                        .resizable()
-                    
-                    Image("ORG_EVA_TIMER-MESS_ON")
-                        .resizable()
-                }
-                
-                else if (countDown.remaining_time <= 15) && countDown.state == "running" {
-                    
-                    Image("RED_EVA_TIMER-BACKGROUND")
-                        .resizable()
-                        .scaledToFill()
-                    
-                    Image("RED_EVA_TIMER-MAIN_SCREEN")
-                        .resizable()
-                        .scaledToFill()
-
-                    Image(isStop ? "RED_EVA_TIMER-STOP_ON" : "RED_EVA_TIMER-STOP_OFF")
-                        .resizable()
-                    
-                    Image(isSlow ? "RED_EVA_TIMER-SLOW_ON" : "RED_EVA_TIMER-SLOW_OFF")
-                        .resizable()
-
-                    Image(isNormal ? "RED_EVA_TIMER-NORMAL_ON" : "RED_EVA_TIMER-NORMAL_OFF")
-                        .resizable()
-                    
-                    Image(isRacing ? "RED_EVA_TIMER-RACING_ON" : "RED_EVA_TIMER-RACING_OFF")
-                        .resizable()
-      
-                    Image(isStop ? "RED_TIMER-INTERNAL_OFF" : "RED_EVA_TIMER-INTERNAL_ON")
-                        .resizable()
-                    
-                    Image("RED_EVA_TIMER-MESS_ON")
-                        .resizable()
-                } else {
-                    Image("YLW_EVA_TIMER-BACKGROUND")
-                        .resizable()
-                        .scaledToFill()
-                    
-                    Image("YLW_EVA_TIMER-MAIN_SCREEN")
-                        .resizable()
-                        .scaledToFill()
-                    
-                    Image(isStop ? "YLW_EVA_TIMER-STOP_ON" : "YLW_EVA_TIMER-STOP_OFF")
-                        .resizable()
-                    
-                    Image(isSlow ? "YLW_EVA_TIMER-SLOW_ON" : "YLW_EVA_TIMER-SLOW_OFF")
-                        .resizable()
-                    
-                    Image(isNormal ? "YLW_EVA_TIMER-NORMAL_ON" : "YLW_EVA_TIMER-NORMAL_OFF")
-                        .resizable()
-                    
-                    Image(isRacing ? "YLW_EVA_TIMER-RACING_ON" : "YLW_EVA_TIMER-RACING_OFF")
-                        .resizable()
-                    
-                    Image(isStop ? "EVA_TIMER-INTERNAL_OFF" : "YLW_EVA_TIMER-INTERNAL_ON")
-                        .resizable()
-                    
-                    Image("YLW_EVA_TIMER-MESS_ON")
-                        .resizable()
-                }
-                
-                
-                GeometryReader { geometry in
-                    Text("8")
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(.gray)
-                        .opacity(0.5)
-                        .position(
-                            x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.46 // Keeps the button at % of the window height
-                        )
-                    
-                    Text("8")
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(.gray)
-                        .opacity(0.5)
-                        .position(
-                            x: geometry.size.width * 0.50,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.46 // Keeps the button at % of the window height
-                        )
-                    
-                    
-                    
-                    Text(":")
-                        .font(Font.custom("digital-7", size: 275))
-                        .foregroundColor(.gray)
-                        .opacity(0.5)
-                        .position(
-                            x: geometry.size.width * 0.58,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.48 // Keeps the button at % of the window height
-                        )
-                    
-                    Text("8")
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(.gray)
-                        .opacity(0.5)
-                        .position(
-                            x: geometry.size.width * 0.66,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.46 // Keeps the button at % of the window height
-                        )
-                    
-                    Text("8")
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(.gray)
-                        .opacity(0.5)
-                        .position(
-                            x: geometry.size.width * 0.795,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.46 // Keeps the button at % of the window height
-                        )
-                    
-                    Text(":")
-                        .font(Font.custom("digital-7", size: 110))
-                        .foregroundColor(.gray)
-                        .opacity(0.5)
-                        .position(
-                            x: geometry.size.width * 0.865,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.553 // Keeps the button at % of the window height
-                        )
-                    
-                    Text("8")
-                        .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                        .foregroundColor(.gray)
-                        .opacity(0.5)
-                        .position(
-                            x: geometry.size.width * 0.895,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.542 // Keeps the button at % of the window height
-                        )
-                    
-                    Text("8")
-                        .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                        .foregroundColor(.gray)
-                        .opacity(0.5)
-                        .position(
-                            x: geometry.size.width * 0.943,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.542 // Keeps the button at % of the window height
-                        )
-                }
-            }
-        )
     }
 }
 
@@ -728,6 +579,179 @@ class displayManager : ObservableObject {
             return "0"
         } else {
             return String(tens)
+        }
+    }
+}
+
+struct BackgroundSet {
+    
+    func setColorToYLW(isStop: Bool, isSlow: Bool, isNormal: Bool, isRacing: Bool) -> some View {
+        ZStack {
+            Image("YLW_EVA_TIMER-BACKGROUND")
+                .resizable()
+                .scaledToFill()
+            
+            Image("YLW_EVA_TIMER-MAIN_SCREEN")
+                .resizable()
+                .scaledToFill()
+            
+            Image(isStop ? "YLW_EVA_TIMER-STOP_ON" : "YLW_EVA_TIMER-STOP_OFF")
+                .resizable()
+            
+            Image(isSlow ? "YLW_EVA_TIMER-SLOW_ON" : "YLW_EVA_TIMER-SLOW_OFF")
+                .resizable()
+            
+            Image(isNormal ? "YLW_EVA_TIMER-NORMAL_ON" : "YLW_EVA_TIMER-NORMAL_OFF")
+                .resizable()
+            
+            Image(isRacing ? "YLW_EVA_TIMER-RACING_ON" : "YLW_EVA_TIMER-RACING_OFF")
+                .resizable()
+            
+            Image(isStop ? "EVA_TIMER-INTERNAL_OFF" : "YLW_EVA_TIMER-INTERNAL_ON")
+                .resizable()
+            
+            Image("YLW_EVA_TIMER-MESS_ON")
+                .resizable()
+        }
+    }
+    
+    func setColorToRED(isStop: Bool, isSlow: Bool, isNormal: Bool, isRacing: Bool) -> some View {
+        ZStack {
+            Image("RED_EVA_TIMER-BACKGROUND")
+                .resizable()
+                .scaledToFill()
+            
+            Image("RED_EVA_TIMER-MAIN_SCREEN")
+                .resizable()
+                .scaledToFill()
+            
+            Image(isStop ? "RED_EVA_TIMER-STOP_ON" : "RED_EVA_TIMER-STOP_OFF")
+                .resizable()
+            
+            Image(isSlow ? "RED_EVA_TIMER-SLOW_ON" : "RED_EVA_TIMER-SLOW_OFF")
+                .resizable()
+            
+            Image(isNormal ? "RED_EVA_TIMER-NORMAL_ON" : "RED_EVA_TIMER-NORMAL_OFF")
+                .resizable()
+            
+            Image(isRacing ? "RED_EVA_TIMER-RACING_ON" : "RED_EVA_TIMER-RACING_OFF")
+                .resizable()
+            
+            Image(isStop ? "RED_TIMER-INTERNAL_OFF" : "RED_EVA_TIMER-INTERNAL_ON")
+                .resizable()
+            
+            Image("RED_EVA_TIMER-MESS_ON")
+                .resizable()
+        }
+    }
+    
+    func setColorToORG(isStop: Bool, isSlow: Bool, isNormal: Bool, isRacing: Bool) -> some View {
+        ZStack {
+            Image("ORG_EVA_TIMER-BACKGROUND")
+                .resizable()
+                .scaledToFill()
+            
+            Image("ORG_EVA_TIMER-MAIN_SCREEN")
+                .resizable()
+                .scaledToFill()
+
+            Image(isStop ? "ORG_EVA_TIMER-STOP_ON" : "ORG_EVA_TIMER-STOP_OFF")
+                .resizable()
+            
+            Image(isSlow ? "ORG_EVA_TIMER-SLOW_ON" : "ORG_EVA_TIMER-SLOW_OFF")
+                .resizable()
+
+            Image(isNormal ? "ORG_EVA_TIMER-NORMAL_ON" : "ORG_EVA_TIMER-NORMAL_OFF")
+                .resizable()
+            
+            Image(isRacing ? "ORG_EVA_TIMER-RACING_ON" : "ORG_EVA_TIMER-RACING_OFF")
+                .resizable()
+
+            Image(isStop ? "ORG_TIMER-INTERNAL_OFF" : "ORG_EVA_TIMER-INTERNAL_ON")
+                .resizable()
+            
+            Image("ORG_EVA_TIMER-MESS_ON")
+                .resizable()
+        }
+    }
+    
+    func setBackground() -> some View {
+        ZStack {
+            GeometryReader { geometry in
+                Text("8")
+                    .font(Font.custom("DSEG7Classic-Bold", size: 175))
+                    .foregroundColor(.gray)
+                    .opacity(0.5)
+                    .position(
+                        x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
+                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
+                    )
+                
+                Text("8")
+                    .font(Font.custom("DSEG7Classic-Bold", size: 175))
+                    .foregroundColor(.gray)
+                    .opacity(0.5)
+                    .position(
+                        x: geometry.size.width * 0.50,  // Keeps the button at % of the window width
+                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
+                    )
+                
+                
+                
+                Text(":")
+                    .font(Font.custom("digital-7", size: 275))
+                    .foregroundColor(.gray)
+                    .opacity(0.5)
+                    .position(
+                        x: geometry.size.width * 0.58,  // Keeps the button at % of the window width
+                        y: geometry.size.height * 0.48 // Keeps the button at % of the window height
+                    )
+                
+                Text("8")
+                    .font(Font.custom("DSEG7Classic-Bold", size: 175))
+                    .foregroundColor(.gray)
+                    .opacity(0.5)
+                    .position(
+                        x: geometry.size.width * 0.66,  // Keeps the button at % of the window width
+                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
+                    )
+                
+                Text("8")
+                    .font(Font.custom("DSEG7Classic-Bold", size: 175))
+                    .foregroundColor(.gray)
+                    .opacity(0.5)
+                    .position(
+                        x: geometry.size.width * 0.795,  // Keeps the button at % of the window width
+                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
+                    )
+                
+                Text(":")
+                    .font(Font.custom("digital-7", size: 110))
+                    .foregroundColor(.gray)
+                    .opacity(0.5)
+                    .position(
+                        x: geometry.size.width * 0.865,  // Keeps the button at % of the window width
+                        y: geometry.size.height * 0.553 // Keeps the button at % of the window height
+                    )
+                
+                Text("8")
+                    .font(Font.custom("DSEG7Classic-Bold", size: 60))
+                    .foregroundColor(.gray)
+                    .opacity(0.5)
+                    .position(
+                        x: geometry.size.width * 0.895,  // Keeps the button at % of the window width
+                        y: geometry.size.height * 0.542 // Keeps the button at % of the window height
+                    )
+                
+                Text("8")
+                    .font(Font.custom("DSEG7Classic-Bold", size: 60))
+                    .foregroundColor(.gray)
+                    .opacity(0.5)
+                    .position(
+                        x: geometry.size.width * 0.943,  // Keeps the button at % of the window width
+                        y: geometry.size.height * 0.542 // Keeps the button at % of the window height
+                    )
+            }
         }
     }
 }
