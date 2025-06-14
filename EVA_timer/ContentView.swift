@@ -43,13 +43,13 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            
+            // set the color of the background
             if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
-                background.setColorToORG(isStop: isStop, isSlow: isSlow, isNormal: isNormal, isRacing: isRacing)
+                background.setColorToORG(isStop, isSlow, isNormal, isRacing)
             } else if (countDown.remaining_time <= 15) && countDown.state == "running" {
-                background.setColorToRED(isStop: isStop, isSlow: isSlow, isNormal: isNormal, isRacing: isRacing)
+                background.setColorToRED(isStop, isSlow, isNormal, isRacing)
             } else {
-                background.setColorToYLW(isStop: isStop, isSlow: isSlow, isNormal: isNormal, isRacing: isRacing)
+                background.setColorToYLW(isStop, isSlow, isNormal, isRacing)
             }
             
             background.setBackground()
@@ -584,8 +584,8 @@ class displayManager : ObservableObject {
 }
 
 struct BackgroundSet {
-    
-    func setColorToYLW(isStop: Bool, isSlow: Bool, isNormal: Bool, isRacing: Bool) -> some View {
+    // _ removes external parameter names
+    func setColorToYLW(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool) -> some View {
         ZStack {
             Image("YLW_EVA_TIMER-BACKGROUND")
                 .resizable()
@@ -615,7 +615,7 @@ struct BackgroundSet {
         }
     }
     
-    func setColorToRED(isStop: Bool, isSlow: Bool, isNormal: Bool, isRacing: Bool) -> some View {
+    func setColorToRED(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool) -> some View {
         ZStack {
             Image("RED_EVA_TIMER-BACKGROUND")
                 .resizable()
@@ -645,7 +645,7 @@ struct BackgroundSet {
         }
     }
     
-    func setColorToORG(isStop: Bool, isSlow: Bool, isNormal: Bool, isRacing: Bool) -> some View {
+    func setColorToORG(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool) -> some View {
         ZStack {
             Image("ORG_EVA_TIMER-BACKGROUND")
                 .resizable()
