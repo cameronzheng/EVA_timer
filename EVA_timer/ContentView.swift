@@ -14,7 +14,7 @@ struct ContentView: View {
     @StateObject private var font = fontManager()
     @StateObject private var display = displayManager()
 
-    var background = BackgroundSet()
+    var mainScreen = MainScreen()
     
     // button boolean variables
     @State private var isStop = true // initialized to be stopped
@@ -33,7 +33,7 @@ struct ContentView: View {
     @State private var millisecondVal = 0.0
     
     // button sizing variables
-    @State private var buttonWidth: CGFloat = 88
+    @State private var buttonWidth: CGFloat = 90
     @State private var buttonHeight: CGFloat = 44
     
     var body: some View {
@@ -42,13 +42,13 @@ struct ContentView: View {
             // setting the background
             // set the color of the background
             if (countDown.remaining_time <= 30 && countDown.remaining_time > 15) && countDown.state == "running" {
-                background.setColor(isStop, isSlow, isNormal, isRacing, "ORG")
+                mainScreen.backgroundColor(isStop, isSlow, isNormal, isRacing, "ORG")
             } else if (countDown.remaining_time <= 15) && countDown.state == "running" {
-                background.setColor(isStop, isSlow, isNormal, isRacing, "RED")
+                mainScreen.backgroundColor(isStop, isSlow, isNormal, isRacing, "RED")
             } else {
-                background.setColor(isStop, isSlow, isNormal, isRacing, "YLW")
+                mainScreen.backgroundColor(isStop, isSlow, isNormal, isRacing, "YLW")
             }
-            background.setBackground()
+            mainScreen.setBackground()
             
             
             // setting the button logic
@@ -121,7 +121,7 @@ struct ContentView: View {
                     x: geometry.size.width * 0.637,  // Keeps the button at % of the window width
                     y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
-                .buttonStyle(.borderless)
+                .buttonStyle(.bordered)
                 
                 
                 // RACING BUTTON
@@ -147,7 +147,7 @@ struct ContentView: View {
                     x: geometry.size.width * 0.765,  // Keeps the button at % of the window width
                     y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
-                .buttonStyle(.borderless)
+                .buttonStyle(.bordered)
                 
                 // display the numbers
                 // NUMBERS DISPLAY
@@ -161,6 +161,8 @@ struct ContentView: View {
                         .position(
                             x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
                             y: geometry.size.height * 0.456 // Keeps the button at % of the window height
+//                            x: 68,
+//                            y: 68
                         )
                     
                     // ones unit of minute
@@ -199,8 +201,10 @@ struct ContentView: View {
                         .foregroundColor(Color("YLW"))
                     
                         .position(
-                            x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
+//                            x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
+//                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
+                            x: 343,
+                            y: 323
                         )
                     
                     // ones unit of minute

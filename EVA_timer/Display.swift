@@ -8,11 +8,9 @@ import SwiftUI
 
 struct MainScreen {
     
-}
-
-struct BackgroundSet {
+    
     // _ removes external parameter names
-    func setColor(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool, _ color: String) -> some View {
+    func backgroundColor(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool, _ color: String) -> some View {
         ZStack {
             Image(color + "_EVA_TIMER-BACKGROUND")
                 .resizable()
@@ -53,8 +51,10 @@ struct BackgroundSet {
                     .foregroundColor(.gray)
                     .opacity(0.5)
                     .position(
-                        x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
-                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
+//                        x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
+//                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
+                        x: 343,
+                        y: 323
                     )
                 
                 Text("8")
