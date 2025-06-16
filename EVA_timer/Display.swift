@@ -7,7 +7,31 @@
 import SwiftUI
 
 struct MainScreen {
+    //  [minute tens digit, minute seconds digit, seconds tens digit, seconds seconds digit, milliseconds tens digit, milliseconds seconds digit]
+    private var xDigitPos: [CGFloat] = [343, 470, 343, 343, 343, 343]
+    private var yDigitPos: [CGFloat] = [323, 323, 323, 323, 323, 323]
     
+    func setDigits(_ digit: Int, _ tens: String, _ ones: String, _ color: String) -> some View {
+        ZStack {
+            // tens unit
+            Text(tens)
+                .font(Font.custom("DSEG7Classic-Bold", size: 175))
+                .foregroundColor(Color(color))
+                .position(
+                    x: xDigitPos[digit],
+                    y: yDigitPos[digit]
+                )
+            
+            // tens unit
+            Text(ones)
+                .font(Font.custom("DSEG7Classic-Bold", size: 175))
+                .foregroundColor(Color(color))
+                .position(
+                    x: xDigitPos[digit + 1],
+                    y: yDigitPos[digit + 1]
+                )
+        }
+    }
     
     // _ removes external parameter names
     func backgroundColor(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool, _ color: String) -> some View {

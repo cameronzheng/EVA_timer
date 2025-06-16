@@ -151,70 +151,15 @@ struct ContentView: View {
                 
                 // display the numbers
                 // NUMBERS DISPLAY
+                let tens = display.numToTens(number: countDown.minutes)
+                let ones = display.numToOnes(number: countDown.minutes)
+                
                 if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
-                    // minute value
-                    // tens unit of minute
-                    Text(display.numToTens(number: countDown.minutes))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("ORG"))
-                    
-                        .position(
-                            x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-//                            x: 68,
-//                            y: 68
-                        )
-                    
-                    // ones unit of minute
-                    Text(display.numToOnes(number: countDown.minutes))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("ORG"))
-                        .position(
-                            x: geometry.size.width * 0.50,  // Keeps the button at 50% of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at 50% of the window height
-                        )
+                    mainScreen.setDigits(0, tens, ones, "ORG")
                 } else if (countDown.remaining_time <= 15) && countDown.state == "running" {
-                    // minute value
-                    // tens unit of minute
-                    Text(display.numToTens(number: countDown.minutes))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("RED"))
-                    
-                        .position(
-                            x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-                        )
-                    
-                    // ones unit of minute
-                    Text(display.numToOnes(number: countDown.minutes))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("RED"))
-                        .position(
-                            x: geometry.size.width * 0.50,  // Keeps the button at 50% of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at 50% of the window height
-                        )
+                    mainScreen.setDigits(0, tens, ones, "RED")
                 } else {
-                    // minute value
-                    // tens unit of minute
-                    Text(display.numToTens(number: countDown.minutes))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("YLW"))
-                    
-                        .position(
-//                            x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
-//                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-                            x: 343,
-                            y: 323
-                        )
-                    
-                    // ones unit of minute
-                    Text(display.numToOnes(number: countDown.minutes))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("YLW"))
-                        .position(
-                            x: geometry.size.width * 0.50,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-                        )
+                    mainScreen.setDigits(0, tens, ones, "YLW")
                 }
                 
                 // slider for the numbers
