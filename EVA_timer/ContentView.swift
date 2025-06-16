@@ -38,6 +38,8 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            
+            // setting the background
             // set the color of the background
             if (countDown.remaining_time <= 30 && countDown.remaining_time > 15) && countDown.state == "running" {
                 background.setColor(isStop, isSlow, isNormal, isRacing, "ORG")
@@ -49,7 +51,7 @@ struct ContentView: View {
             background.setBackground()
             
             
-            
+            // setting the button logic
             GeometryReader { geometry in
                 // STOP BUTTON
                 Button {
@@ -65,7 +67,7 @@ struct ContentView: View {
                 }
                 .position(
                     x: geometry.size.width * 0.381,  // Keeps the button at % of the window width
-                    y: geometry.size.height * 0.675 // Keeps the button at % of the window height
+                    y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
                 .buttonStyle(.bordered)
                 
@@ -91,9 +93,9 @@ struct ContentView: View {
                 }
                 .position(
                     x: geometry.size.width * 0.5095,  // Keeps the button at % of the window width
-                    y: geometry.size.height * 0.675 // Keeps the button at % of the window height
+                    y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
-                .buttonStyle(.borderless)
+                .buttonStyle(.bordered)
                 
                 
                 // NORMAL BUTTON
@@ -117,7 +119,7 @@ struct ContentView: View {
                 }
                 .position(
                     x: geometry.size.width * 0.637,  // Keeps the button at % of the window width
-                    y: geometry.size.height * 0.675 // Keeps the button at % of the window height
+                    y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
                 .buttonStyle(.borderless)
                 
@@ -143,11 +145,11 @@ struct ContentView: View {
                 }
                 .position(
                     x: geometry.size.width * 0.765,  // Keeps the button at % of the window width
-                    y: geometry.size.height * 0.675 // Keeps the button at % of the window height
+                    y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
                 .buttonStyle(.borderless)
                 
-                
+                // display the numbers
                 // NUMBERS DISPLAY
                 if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
                     // minute value
@@ -211,6 +213,7 @@ struct ContentView: View {
                         )
                 }
                 
+                // slider for the numbers
                 if countDown.state == "paused" || countDown.state == "idle" {
                     // slider for minute value
                     ValueSlider(value: $minuteVal, in: 0.0 ... 59.0, step: 1.0)
@@ -218,7 +221,7 @@ struct ContentView: View {
                         .valueSliderStyle(
                             VerticalValueSliderStyle(
                                 thumb: Rectangle(),
-                                thumbSize: CGSize(width: 237, height: 50)
+                                thumbSize: CGSize(width: 235, height: 50)
                             )
                         )
                         .opacity(0.4) // sets the transparency of the slider
@@ -231,11 +234,12 @@ struct ContentView: View {
                         .frame(width: 64, height: 100)
                         .padding()
                         .position(
-                            x: geometry.size.width * 0.43,  // Keeps the button at % of the window width
+                            x: geometry.size.width * 0.433,  // Keeps the button at % of the window width
                             y: geometry.size.height * 0.457 // Keeps the button at % of the window height
                         )
                 }
                 
+                // displaying the seconds
                 // seconds val
                 
                 if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
@@ -273,9 +277,6 @@ struct ContentView: View {
                                 y: geometry.size.height * 0.48 // Keeps the button at % of the window height
                             )
                     }
-                    
-                    
-                    
                     
                 } else if (countDown.remaining_time <= 15) && countDown.state == "running" {
                     // tens unit of seconds val
@@ -350,6 +351,7 @@ struct ContentView: View {
             
                 }
                 
+                // slider for the seconds
                 if countDown.state == "paused" || countDown.state == "idle" {
                     // slider for seconds val
                     ValueSlider(value: $secondVal, in: 0.0 ... 59.0, step: 1.0)
@@ -370,12 +372,12 @@ struct ContentView: View {
                         .frame(width: 64, height: 100)
                         .padding()
                         .position(
-                            x: geometry.size.width * 0.72,  // Keeps the button at % of the window width
+                            x: geometry.size.width * 0.728,  // Keeps the button at % of the window width
                             y: geometry.size.height * 0.457 // Keeps the button at % of the window height
                         )
                 }
                 
-                
+                // displaying the milliseconds
                 // milliseconds val
                 if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
                     // tens unit of milliseconds val

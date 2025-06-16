@@ -6,6 +6,10 @@
 //
 import SwiftUI
 
+struct MainScreen {
+    
+}
+
 struct BackgroundSet {
     // _ removes external parameter names
     func setColor(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool, _ color: String) -> some View {
@@ -40,6 +44,9 @@ struct BackgroundSet {
     
     func setBackground() -> some View {
         ZStack {
+            // [minutesTenDigit, minutesOnesDigit, secondsTenDigit, secondsOnesDigit]
+//            let xPos = [0.365, 0.50, 0.66, 0.795]
+    
             GeometryReader { geometry in
                 Text("8")
                     .font(Font.custom("DSEG7Classic-Bold", size: 175))
@@ -58,8 +65,6 @@ struct BackgroundSet {
                         x: geometry.size.width * 0.50,  // Keeps the button at % of the window width
                         y: geometry.size.height * 0.46 // Keeps the button at % of the window height
                     )
-                
-                
                 
                 Text(":")
                     .font(Font.custom("digital-7", size: 275))
