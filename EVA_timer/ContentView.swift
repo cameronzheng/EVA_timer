@@ -69,7 +69,7 @@ struct ContentView: View {
                     x: geometry.size.width * 0.381,  // Keeps the button at % of the window width
                     y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderless)
                 
                 
                 // SLOW BUTTON
@@ -95,7 +95,7 @@ struct ContentView: View {
                     x: geometry.size.width * 0.5095,  // Keeps the button at % of the window width
                     y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderless)
                 
                 
                 // NORMAL BUTTON
@@ -121,7 +121,7 @@ struct ContentView: View {
                     x: geometry.size.width * 0.637,  // Keeps the button at % of the window width
                     y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderless)
                 
                 
                 // RACING BUTTON
@@ -147,7 +147,7 @@ struct ContentView: View {
                     x: geometry.size.width * 0.765,  // Keeps the button at % of the window width
                     y: geometry.size.height * 0.665 // Keeps the button at % of the window height
                 )
-                .buttonStyle(.bordered)
+                .buttonStyle(.borderless)
                 
                 // display the numbers
                 // NUMBERS DISPLAY
@@ -166,7 +166,7 @@ struct ContentView: View {
                 if countDown.state == "paused" || countDown.state == "idle" {
                     // slider for minute value
                     ValueSlider(value: $minuteVal, in: 0.0 ... 59.0, step: 1.0)
-                        .frame(height: 180)
+                        .frame(height: 170)
                         .valueSliderStyle(
                             VerticalValueSliderStyle(
                                 thumb: Rectangle(),
@@ -178,13 +178,15 @@ struct ContentView: View {
                             if countDown.state == "paused" || countDown.state == "idle" { countDown.updateTimeComponent(hour: nil, minute: String(minuteVal), second: nil, millisecond: nil)
                             }
                         }
-                    // only change the minute value when paused or idle
+                        // only change the minute value when paused or idle
                         .disabled(countDown.state != "paused" && countDown.state != "idle")
                         .frame(width: 64, height: 100)
                         .padding()
                         .position(
-                            x: geometry.size.width * 0.433,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.457 // Keeps the button at % of the window height
+//                            x: geometry.size.width * 0.433,  // Keeps the button at % of the window width
+//                            y: geometry.size.height * 0.457 // Keeps the button at % of the window height
+                            x: 405,
+                            y: 323
                         )
                 }
                 
@@ -205,7 +207,7 @@ struct ContentView: View {
                 if countDown.state == "paused" || countDown.state == "idle" {
                     // slider for seconds val
                     ValueSlider(value: $secondVal, in: 0.0 ... 59.0, step: 1.0)
-                        .frame(height: 180)
+                        .frame(height: 170)
                         .valueSliderStyle(
                             VerticalValueSliderStyle(
                                 thumb: Rectangle(),
@@ -217,7 +219,7 @@ struct ContentView: View {
                             if countDown.state == "paused" || countDown.state == "idle" { countDown.updateTimeComponent(hour: nil, minute: nil, second: String(secondVal), millisecond: nil)
                             }
                         }
-                    // only change if the timer is paused or idled
+                        // only change if the timer is paused or idled
                         .disabled(countDown.state != "paused" && countDown.state != "idle")
                         .frame(width: 64, height: 100)
                         .padding()

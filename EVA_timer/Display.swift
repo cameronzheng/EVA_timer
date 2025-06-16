@@ -17,14 +17,6 @@ struct MainScreen {
     // [seconds colon, millisecond colon]
     private var colFont: [CGFloat] = [275, 110]
     
-    func setColon() {
-//        if (countDown.state != "paused") {
-//            secColon.toggle()
-//        } else {
-//            secColon = false
-//        }
-    }
-    
     func SetDigits(_ digit: Int, _ tens: String, _ ones: String, _ color: String) -> some View {
         ZStack {
             // tens unit
@@ -79,30 +71,28 @@ struct MainScreen {
     }
     
     func setBackground() -> some View {
-        
         ZStack {
             // background for the digits
-            ForEach((0...5), id: \.self) {
+            ForEach((0...5), id: \.self) { digit in
                 Text("8")
-                    .font(Font.custom("DSEG7Classic-Bold", size: digitFont[$0]))
+                    .font(Font.custom("DSEG7Classic-Bold", size: digitFont[digit]))
                     .foregroundColor(.gray)
                     .opacity(0.5)
                     .position(
-                        x: xDigitPos[$0],
-                        y: yDigitPos[$0]
+                        x: xDigitPos[digit],
+                        y: yDigitPos[digit]
                     )
             }
             
             // background for the colons
-            ForEach((0...1), id: \.self) {
-                
+            ForEach((0...1), id: \.self) { digit in
                 Text(":")
-                    .font(Font.custom("digital-7", size: colFont[$0]))
+                    .font(Font.custom("digital-7", size: colFont[digit]))
                     .foregroundColor(.gray)
                     .opacity(0.5)
                     .position(
-                        x: xColPos[$0],
-                        y: yColPos[$0]
+                        x: xColPos[digit],
+                        y: yColPos[digit]
                     )
             }
         }

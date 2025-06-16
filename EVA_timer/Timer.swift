@@ -60,3 +60,6 @@ class CountDownModel: ObservableObject {
         remaining_time = (h * 3600) + (m * 60) + s + (ms / 100)
     }
 }
+
+// class to make the sounds
+
