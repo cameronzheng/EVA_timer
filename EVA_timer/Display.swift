@@ -8,14 +8,29 @@ import SwiftUI
 
 struct MainScreen {
     //  [minute tens digit, minute seconds digit, seconds tens digit, seconds seconds digit, milliseconds tens digit, milliseconds seconds digit]
-    private var xDigitPos: [CGFloat] = [343, 470, 343, 343, 343, 343]
-    private var yDigitPos: [CGFloat] = [323, 323, 323, 323, 323, 323]
+    private var xDigitPos: [CGFloat] = [343, 470, 619, 745, 840, 884]
+    private var yDigitPos: [CGFloat] = [323, 323, 323, 323, 382, 382]
+    private var digitFont: [CGFloat] = [175, 175, 175, 175, 60, 60]
+    // [x, y]
+    private var secColPos: [CGFloat] = [544, 338]
+    private var msecColPos: [CGFloat] = [811, 389]
+    // [seconds colon, millisecond colon]
+    private var colFont: [CGFloat] = [275, 110]
     
-    func setDigits(_ digit: Int, _ tens: String, _ ones: String, _ color: String) -> some View {
+//    func setColon()
+//        .onChange(of: countDown.seconds) {
+        //                            if (countDown.state != "paused") {
+        //                                secColon.toggle()
+        //                            } else {
+        //                                secColon = false
+        //                            }
+        //                        }
+    
+    func SetDigits(_ digit: Int, _ tens: String, _ ones: String, _ color: String) -> some View {
         ZStack {
             // tens unit
             Text(tens)
-                .font(Font.custom("DSEG7Classic-Bold", size: 175))
+                .font(Font.custom("DSEG7Classic-Bold", size: digitFont[digit]))
                 .foregroundColor(Color(color))
                 .position(
                     x: xDigitPos[digit],
@@ -24,7 +39,7 @@ struct MainScreen {
             
             // tens unit
             Text(ones)
-                .font(Font.custom("DSEG7Classic-Bold", size: 175))
+                .font(Font.custom("DSEG7Classic-Bold", size: digitFont[digit]))
                 .foregroundColor(Color(color))
                 .position(
                     x: xDigitPos[digit + 1],

@@ -151,15 +151,15 @@ struct ContentView: View {
                 
                 // display the numbers
                 // NUMBERS DISPLAY
-                let tens = display.numToTens(number: countDown.minutes)
-                let ones = display.numToOnes(number: countDown.minutes)
+                let minTens = display.numToTens(number: countDown.minutes)
+                let minOnes = display.numToOnes(number: countDown.minutes)
                 
                 if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
-                    mainScreen.setDigits(0, tens, ones, "ORG")
+                    mainScreen.SetDigits(0, minTens, minOnes, "ORG")
                 } else if (countDown.remaining_time <= 15) && countDown.state == "running" {
-                    mainScreen.setDigits(0, tens, ones, "RED")
+                    mainScreen.SetDigits(0, minTens, minOnes, "RED")
                 } else {
-                    mainScreen.setDigits(0, tens, ones, "YLW")
+                    mainScreen.SetDigits(0, minTens, minOnes, "YLW")
                 }
                 
                 // slider for the numbers
@@ -190,114 +190,23 @@ struct ContentView: View {
                 
                 // displaying the seconds
                 // seconds val
+                let secTens = display.numToTens(number: countDown.seconds)
+                let secOnes = display.numToOnes(number: countDown.seconds)
                 
-                if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
-                    // tens unit of seconds val
-                    Text(display.numToTens(number: countDown.seconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("ORG"))
-                        .position(
-                            x: geometry.size.width * 0.66,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-                        )
-                        .onChange(of: countDown.seconds) {
-                            if (countDown.state != "paused") {
-                                secColon.toggle()
-                            } else {
-                                secColon = false
-                            }
-                        }
-
-                    // ones unit of seconds val
-                    Text(display.numToOnes(number: countDown.seconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("ORG"))
-                        .position(
-                            x: geometry.size.width * 0.795,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-                        )
-                    
-                    if secColon == true {
-                        Text(":")
-                            .font(Font.custom("digital-7", size: 275))
-                            .foregroundColor(Color("ORG"))
-                            .position(
-                                x: geometry.size.width * 0.58,  // Keeps the button at % of the window width
-                                y: geometry.size.height * 0.48 // Keeps the button at % of the window height
-                            )
-                    }
-                    
+                Text(":")
+                    .font(Font.custom("digital-7", size: 275))
+                    .foregroundColor(Color("RED"))
+                    .position(
+                        x: 544,
+                        y: 338
+                    )
+                
+                if (countDown.remaining_time <= 30 && countDown.remaining_time > 15) && countDown.state == "running" {
+                    mainScreen.SetDigits(2, secTens, secOnes, "ORG")
                 } else if (countDown.remaining_time <= 15) && countDown.state == "running" {
-                    // tens unit of seconds val
-                    Text(display.numToTens(number: countDown.seconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("RED"))
-                        .position(
-                            x: geometry.size.width * 0.66,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-                        )
-                        .onChange(of: countDown.seconds) {
-                            if (countDown.state != "paused") {
-                                secColon.toggle()
-                            } else {
-                                secColon = false
-                            }
-                        }
-
-                    // ones unit of seconds val
-                    Text(display.numToOnes(number: countDown.seconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("RED"))
-                        .position(
-                            x: geometry.size.width * 0.795,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-                        )
-                    
-                    if secColon == true {
-                        Text(":")
-                            .font(Font.custom("digital-7", size: 275))
-                            .foregroundColor(Color("RED"))
-                            .position(
-                                x: geometry.size.width * 0.58,  // Keeps the button at % of the window width
-                                y: geometry.size.height * 0.48 // Keeps the button at % of the window height
-                            )
-                    }
+                    mainScreen.SetDigits(2, secTens, secOnes, "RED")
                 } else {
-                    // tens unit of seconds val
-                    Text(display.numToTens(number: countDown.seconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("YLW"))
-                        .position(
-                            x: geometry.size.width * 0.66,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-                        )
-                        .onChange(of: countDown.seconds) {
-                            if (countDown.state != "paused") {
-                                secColon.toggle()
-                            } else {
-                                secColon = false
-                            }
-                        }
-
-                    // ones unit of seconds val
-                    Text(display.numToOnes(number: countDown.seconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                        .foregroundColor(Color("YLW"))
-                        .position(
-                            x: geometry.size.width * 0.795,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.456 // Keeps the button at % of the window height
-                        )
-                    
-                    if secColon == true {
-                        Text(":")
-                            .font(Font.custom("digital-7", size: 275))
-                            .foregroundColor(Color("YLW"))
-                            .position(
-                                x: geometry.size.width * 0.58,  // Keeps the button at % of the window width
-                                y: geometry.size.height * 0.48 // Keeps the button at % of the window height
-                            )
-                    }
-            
+                    mainScreen.SetDigits(2, secTens, secOnes, "YLW")
                 }
                 
                 // slider for the seconds
@@ -321,98 +230,31 @@ struct ContentView: View {
                         .frame(width: 64, height: 100)
                         .padding()
                         .position(
-                            x: geometry.size.width * 0.728,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.457 // Keeps the button at % of the window height
+//                            x: geometry.size.width * 0.728,  // Keeps the button at % of the window width
+//                            y: geometry.size.height * 0.457 // Keeps the button at % of the window height
+                            x: 682,
+                            y: 323
                         )
                 }
                 
                 // displaying the milliseconds
                 // milliseconds val
+                let msecTens = display.numToTens(number: countDown.milliseconds)
+                let msecOnes = display.numToOnes(number: countDown.milliseconds)
+                
+                Text(":")
+                    .font(Font.custom("digital-7", size: 110))
+                    .foregroundColor(Color("ORG"))
+                    .position(
+                        x: 811,
+                        y: 389
+                    )
                 if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
-                    // tens unit of milliseconds val
-                    Text(display.numToTens(number: countDown.milliseconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                        .foregroundColor(Color("ORG"))
-                        .position(
-                            x: geometry.size.width * 0.895,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.545 // Keeps the button at % of the window height
-                        )
-                    
-                    // ones unit of milliseconds val
-                    Text(display.numToOnes(number: countDown.milliseconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                        .foregroundColor(Color("ORG"))
-                        .position(
-                            x: geometry.size.width * 0.943,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.545 // Keeps the button at % of the window height
-                        )
-                    
-                    if secColon == true {
-                        Text(":")
-                            .font(Font.custom("digital-7", size: 110))
-                            .foregroundColor(Color("ORG"))
-                            .position(
-                                x: geometry.size.width * 0.865,  // Keeps the button at % of the window width
-                                y: geometry.size.height * 0.555 // Keeps the button at % of the window height
-                            )
-                    }
-                    
+                    mainScreen.SetDigits(4, msecTens, msecOnes, "ORG")
                 } else if countDown.remaining_time <= 15 && countDown.state == "running"{
-                    // tens unit of milliseconds val
-                    Text(display.numToTens(number: countDown.milliseconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                        .foregroundColor(Color("RED"))
-                        .position(
-                            x: geometry.size.width * 0.895,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.545 // Keeps the button at % of the window height
-                        )
-                    
-                    // ones unit of milliseconds val
-                    Text(display.numToOnes(number: countDown.milliseconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                        .foregroundColor(Color("RED"))
-                        .position(
-                            x: geometry.size.width * 0.943,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.545 // Keeps the button at % of the window height
-                        )
-                    
-                    if secColon == true {
-                        Text(":")
-                            .font(Font.custom("digital-7", size: 110))
-                            .foregroundColor(Color("RED"))
-                            .position(
-                                x: geometry.size.width * 0.865,  // Keeps the button at % of the window width
-                                y: geometry.size.height * 0.555 // Keeps the button at % of the window height
-                            )
-                    }
+                    mainScreen.SetDigits(4, msecTens, msecOnes, "RED")
                 } else {
-                    // tens unit of milliseconds val
-                    Text(display.numToTens(number: countDown.milliseconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                        .foregroundColor(Color("YLW"))
-                        .position(
-                            x: geometry.size.width * 0.895,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.545 // Keeps the button at % of the window height
-                        )
-                    
-                    // ones unit of milliseconds val
-                    Text(display.numToOnes(number: countDown.milliseconds))
-                        .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                        .foregroundColor(Color("YLW"))
-                        .position(
-                            x: geometry.size.width * 0.943,  // Keeps the button at % of the window width
-                            y: geometry.size.height * 0.545 // Keeps the button at % of the window height
-                        )
-                    
-                    if secColon == true {
-                        Text(":")
-                            .font(Font.custom("digital-7", size: 110))
-                            .foregroundColor(Color("YLW"))
-                            .position(
-                                x: geometry.size.width * 0.865,  // Keeps the button at % of the window width
-                                y: geometry.size.height * 0.555 // Keeps the button at % of the window height
-                            )
-                    }
+                    mainScreen.SetDigits(4, msecTens, msecOnes, "YLW")
                 }
             }
         }
