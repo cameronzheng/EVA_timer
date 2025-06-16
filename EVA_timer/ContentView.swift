@@ -48,7 +48,7 @@ struct ContentView: View {
             } else {
                 mainScreen.backgroundColor(isStop, isSlow, isNormal, isRacing, "YLW")
             }
-            mainScreen.setBackground()
+            mainScreen.setBackground() // sets the background digits
             
             
             // setting the button logic
@@ -193,14 +193,6 @@ struct ContentView: View {
                 let secTens = display.numToTens(number: countDown.seconds)
                 let secOnes = display.numToOnes(number: countDown.seconds)
                 
-                Text(":")
-                    .font(Font.custom("digital-7", size: 275))
-                    .foregroundColor(Color("RED"))
-                    .position(
-                        x: 544,
-                        y: 338
-                    )
-                
                 if (countDown.remaining_time <= 30 && countDown.remaining_time > 15) && countDown.state == "running" {
                     mainScreen.SetDigits(2, secTens, secOnes, "ORG")
                 } else if (countDown.remaining_time <= 15) && countDown.state == "running" {
@@ -230,8 +222,6 @@ struct ContentView: View {
                         .frame(width: 64, height: 100)
                         .padding()
                         .position(
-//                            x: geometry.size.width * 0.728,  // Keeps the button at % of the window width
-//                            y: geometry.size.height * 0.457 // Keeps the button at % of the window height
                             x: 682,
                             y: 323
                         )
@@ -242,13 +232,6 @@ struct ContentView: View {
                 let msecTens = display.numToTens(number: countDown.milliseconds)
                 let msecOnes = display.numToOnes(number: countDown.milliseconds)
                 
-                Text(":")
-                    .font(Font.custom("digital-7", size: 110))
-                    .foregroundColor(Color("ORG"))
-                    .position(
-                        x: 811,
-                        y: 389
-                    )
                 if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
                     mainScreen.SetDigits(4, msecTens, msecOnes, "ORG")
                 } else if countDown.remaining_time <= 15 && countDown.state == "running"{

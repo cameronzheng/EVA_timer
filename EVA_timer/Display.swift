@@ -11,20 +11,19 @@ struct MainScreen {
     private var xDigitPos: [CGFloat] = [343, 470, 619, 745, 840, 884]
     private var yDigitPos: [CGFloat] = [323, 323, 323, 323, 382, 382]
     private var digitFont: [CGFloat] = [175, 175, 175, 175, 60, 60]
-    // [x, y]
-    private var secColPos: [CGFloat] = [544, 338]
-    private var msecColPos: [CGFloat] = [811, 389]
+    // [second colon, millisecond colon]
+    private var xColPos: [CGFloat] = [544, 811]
+    private var yColPos: [CGFloat] = [338, 389]
     // [seconds colon, millisecond colon]
     private var colFont: [CGFloat] = [275, 110]
     
-//    func setColon()
-//        .onChange(of: countDown.seconds) {
-        //                            if (countDown.state != "paused") {
-        //                                secColon.toggle()
-        //                            } else {
-        //                                secColon = false
-        //                            }
-        //                        }
+    func setColon() {
+//        if (countDown.state != "paused") {
+//            secColon.toggle()
+//        } else {
+//            secColon = false
+//        }
+    }
     
     func SetDigits(_ digit: Int, _ tens: String, _ ones: String, _ color: String) -> some View {
         ZStack {
@@ -80,83 +79,30 @@ struct MainScreen {
     }
     
     func setBackground() -> some View {
+        
         ZStack {
-            // [minutesTenDigit, minutesOnesDigit, secondsTenDigit, secondsOnesDigit]
-//            let xPos = [0.365, 0.50, 0.66, 0.795]
-    
-            GeometryReader { geometry in
+            // background for the digits
+            ForEach((0...5), id: \.self) {
                 Text("8")
-                    .font(Font.custom("DSEG7Classic-Bold", size: 175))
+                    .font(Font.custom("DSEG7Classic-Bold", size: digitFont[$0]))
                     .foregroundColor(.gray)
                     .opacity(0.5)
                     .position(
-//                        x: geometry.size.width * 0.365,  // Keeps the button at % of the window width
-//                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
-                        x: 343,
-                        y: 323
+                        x: xDigitPos[$0],
+                        y: yDigitPos[$0]
                     )
-                
-                Text("8")
-                    .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                    .foregroundColor(.gray)
-                    .opacity(0.5)
-                    .position(
-                        x: geometry.size.width * 0.50,  // Keeps the button at % of the window width
-                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
-                    )
+            }
+            
+            // background for the colons
+            ForEach((0...1), id: \.self) {
                 
                 Text(":")
-                    .font(Font.custom("digital-7", size: 275))
+                    .font(Font.custom("digital-7", size: colFont[$0]))
                     .foregroundColor(.gray)
                     .opacity(0.5)
                     .position(
-                        x: geometry.size.width * 0.58,  // Keeps the button at % of the window width
-                        y: geometry.size.height * 0.48 // Keeps the button at % of the window height
-                    )
-                
-                Text("8")
-                    .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                    .foregroundColor(.gray)
-                    .opacity(0.5)
-                    .position(
-                        x: geometry.size.width * 0.66,  // Keeps the button at % of the window width
-                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
-                    )
-                
-                Text("8")
-                    .font(Font.custom("DSEG7Classic-Bold", size: 175))
-                    .foregroundColor(.gray)
-                    .opacity(0.5)
-                    .position(
-                        x: geometry.size.width * 0.795,  // Keeps the button at % of the window width
-                        y: geometry.size.height * 0.46 // Keeps the button at % of the window height
-                    )
-                
-                Text(":")
-                    .font(Font.custom("digital-7", size: 110))
-                    .foregroundColor(.gray)
-                    .opacity(0.5)
-                    .position(
-                        x: geometry.size.width * 0.865,  // Keeps the button at % of the window width
-                        y: geometry.size.height * 0.553 // Keeps the button at % of the window height
-                    )
-                
-                Text("8")
-                    .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                    .foregroundColor(.gray)
-                    .opacity(0.5)
-                    .position(
-                        x: geometry.size.width * 0.895,  // Keeps the button at % of the window width
-                        y: geometry.size.height * 0.542 // Keeps the button at % of the window height
-                    )
-                
-                Text("8")
-                    .font(Font.custom("DSEG7Classic-Bold", size: 60))
-                    .foregroundColor(.gray)
-                    .opacity(0.5)
-                    .position(
-                        x: geometry.size.width * 0.943,  // Keeps the button at % of the window width
-                        y: geometry.size.height * 0.542 // Keeps the button at % of the window height
+                        x: xColPos[$0],
+                        y: yColPos[$0]
                     )
             }
         }
