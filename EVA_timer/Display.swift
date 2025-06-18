@@ -39,8 +39,6 @@ struct MainScreen {
         }
     }
     
-//    func setBackground() -> some View
-    
     // _ removes external parameter names
     func backgroundColor(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool, _ color: String) -> some View {
         ZStack {

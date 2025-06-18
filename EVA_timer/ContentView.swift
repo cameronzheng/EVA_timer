@@ -51,6 +51,9 @@ struct ContentView: View {
             }
             mainScreen.setupBackgroundDigits() // sets the background digits
             
+//            MainScreen(isStop: $isStop, isSlow: $isSlow, isNormal: $isNormal, isRacing: $isRacing)
+//                .environmentObject(countDown)
+            
             // display buttons
             Buttons(isStop: $isStop, isSlow: $isSlow, isNormal: $isNormal, isRacing: $isRacing)
                 .environmentObject(countDown)
