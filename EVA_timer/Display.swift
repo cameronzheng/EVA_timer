@@ -39,6 +39,8 @@ struct MainScreen {
         }
     }
     
+//    func setBackground() -> some View
+    
     // _ removes external parameter names
     func backgroundColor(_ isStop: Bool, _ isSlow: Bool, _ isNormal: Bool, _ isRacing: Bool, _ color: String) -> some View {
         ZStack {
@@ -70,7 +72,7 @@ struct MainScreen {
         }
     }
     
-    func setBackground() -> some View {
+    func setupBackgroundDigits() -> some View {
         ZStack {
             // background for the digits
             ForEach((0...5), id: \.self) { digit in
