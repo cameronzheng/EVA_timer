@@ -62,7 +62,7 @@ struct MainScreen {
             Image(isRacing ? color + "_EVA_TIMER-RACING_ON" : color + "_EVA_TIMER-RACING_OFF")
                 .resizable()
             
-            Image(isStop ? color + "_EVA_TIMER-INTERNAL_OFF" : color + "_EVA_TIMER-INTERNAL_ON")
+            Image(isStop ? "EVA_TIMER-INTERNAL_OFF" : color + "_EVA_TIMER-INTERNAL_ON")
                 .resizable()
             
             Image(color + "_EVA_TIMER-MESS_ON")

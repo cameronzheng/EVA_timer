@@ -154,7 +154,7 @@ struct ContentView: View {
                 let minTens = display.numToTens(number: countDown.minutes)
                 let minOnes = display.numToOnes(number: countDown.minutes)
                 
-                if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
+                if (countDown.remaining_time <= 30 && countDown.remaining_time > 15) && countDown.state == "running" {
                     mainScreen.SetDigits(0, minTens, minOnes, "ORG")
                 } else if (countDown.remaining_time <= 15) && countDown.state == "running" {
                     mainScreen.SetDigits(0, minTens, minOnes, "RED")
@@ -234,7 +234,7 @@ struct ContentView: View {
                 let msecTens = display.numToTens(number: countDown.milliseconds)
                 let msecOnes = display.numToOnes(number: countDown.milliseconds)
                 
-                if (countDown.remaining_time <= 60 && countDown.remaining_time > 15) && countDown.state == "running" {
+                if (countDown.remaining_time <= 30 && countDown.remaining_time > 15) && countDown.state == "running" {
                     mainScreen.SetDigits(4, msecTens, msecOnes, "ORG")
                 } else if countDown.remaining_time <= 15 && countDown.state == "running"{
                     mainScreen.SetDigits(4, msecTens, msecOnes, "RED")

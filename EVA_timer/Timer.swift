@@ -53,6 +53,10 @@ class CountDownModel: ObservableObject {
     }
 
     func updateTimeComponent(hour: String?, minute: String?, second: String?, millisecond: String?) {
+        // optional (?) to check inputs
+        // checks if the string is valid, if not (nil), revert to the hours var
+        // then check if the value converted to a double is not nil
+        // if nil, convert h = 0.0
         let h = Double(hour ?? "\(hours)") ?? 0.0
         let m = Double(minute ?? "\(minutes)") ?? 0.0
         let s = Double(second ?? "\(seconds)") ?? 0.0
